@@ -1,0 +1,16 @@
+[package]
+name = "db"
+version = "0.1.0"
+authors = ["TigerInYourDreams <TigerInYourDream@hi.zy>"]
+edition = "2018"
+
+[dependencies]
+diesel = { version = "1.0.0", features = ["r2d2", "postgres", "uuid", "serde_json", "chrono"]  }
+#env var
+dotenv = "0.9.0"
+
+uuid = { version = "0.6.5" }
+md5 = "0.6.0"
+
+# Date and Time for Rust
+chrono = "0.4.6"

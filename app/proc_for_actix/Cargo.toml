@@ -1,0 +1,13 @@
+[package]
+name = "proc_for_actix"
+version = "0.1.0"
+authors = ["TigerInYourDreams <TigerInYourDream@hi.zy>"]
+edition = "2018"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "0.15", features = ["full", "fold"] }
+quote = "0.6"
+proc-macro2 = "0.4"

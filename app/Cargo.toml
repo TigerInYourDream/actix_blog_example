@@ -1,0 +1,12 @@
+[package]
+name = "app"
+version = "0.1.0"
+authors = ["TigerInYourDreams <TigerInYourDream@hi.zy>"]
+edition = "2018"
+
+[dependencies]
+actix-web = "0.7"
+
+proc_for_actix = { path = "./proc_for_actix" }
+db = { path = "../db" }
+view = { path = "../view" }

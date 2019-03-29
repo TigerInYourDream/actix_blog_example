@@ -1,0 +1,7 @@
+[package]
+name = "view"
+version = "0.1.0"
+authors = ["TigerInYourDreams <TigerInYourDream@hi.zy>"]
+edition = "2018"
+
+[dependencies]
