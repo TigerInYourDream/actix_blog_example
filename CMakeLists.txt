@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.13)
-project(actix_web)
+project(actix_blog)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(actix_web
+add_executable(actix_blog
         app/src/main.rs
         app/Cargo.toml
         db/src/lib.rs

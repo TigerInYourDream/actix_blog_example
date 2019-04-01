@@ -18,7 +18,6 @@ pub fn derive(input: proc_macro::TokenStream) -> TokenStream {
 }
 
 fn impl_message(ast: &DeriveInput) -> Result<TokenStream> {
-    // get Derive  name
     let name = &ast.ident;
     let gen = quote! {
         impl Message for #name {

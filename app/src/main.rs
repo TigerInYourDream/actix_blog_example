@@ -1,14 +1,21 @@
-extern crate actix_web;
+use jsonwebtoken as jwt;
 
-use actix_web::{server, App, HttpRequest};
-
-fn index(_req: &HttpRequest) -> &'static str {
-    "Hello world!"
-}
+mod api;
+mod handler;
+mod middlewares;
+mod routes;
 
 fn main() {
-    server::new(|| App::new().resource("/", |r| r.f(index)))
-        .bind("127.0.0.1:9096")
+    //setting log
+    std::env::set_var("RUST_LOG", "actix_web=info");
+    env_logger::init();
+
+    let sys = actix_web::actix::System::new("actix_blog");
+    let port = "127.0.0.1:9096";
+    actix_web::server::new(|| routes::app())
+        .bind(port)
         .unwrap()
-        .run();
+        .start();
+    println!("start server at: {}", port);
+    let _ = sys.run();
 }

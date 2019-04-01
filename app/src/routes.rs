@@ -13,12 +13,14 @@ impl Actor for DbExecutor {
     type Context = SyncContext<Self>;
 }
 
+/// so we can share The AppState(DbExecutor) in App, we can use it in method
 pub struct AppState {
     pub pool: Addr<DbExecutor>,
 }
 
 pub fn app() -> App<AppState> {
     let pool = DbConnecting::establish_pool();
+    // Start 6 parallel db executors
     let addr = SyncArbiter::start(6, move || DbExecutor(pool.clone()));
 
     App::with_state(AppState { pool: addr.clone() })

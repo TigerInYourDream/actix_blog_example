@@ -13,7 +13,7 @@ pub struct DbConnecting;
 impl DbConnecting {
     pub fn establish_connection() -> diesel::pg::PgConnection {
         dotenv().ok();
-//        let s = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+//        let s = std::env::var("DATABASE_URL").expect("DATABASE_URL must be set");
         let db_url = "postgres://zhaoyue:000000@127.0.0.1/actix_web_dev";
         diesel::pg::PgConnection::establish(&db_url).expect("Failed to create connection.")
     }

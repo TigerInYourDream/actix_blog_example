@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/zhaoyue/Desktop/actix_web
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/zhaoyue/Desktop/actix_blog
 -- The C compiler identification is AppleClang 10.0.1.10010046
 -- The CXX compiler identification is AppleClang 10.0.1.10010046
 -- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
@@ -24,7 +24,7 @@ CMake Error at CMakeLists.txt:6 (add_executable):
 
 
 CMake Error at CMakeLists.txt:6 (add_executable):
-  No SOURCES given to target: actix_web
+  No SOURCES given to target: actix_blog
 
 
--- Build files have been written to: /Users/zhaoyue/Desktop/actix_web/cmake-build-debug
+-- Build files have been written to: /Users/zhaoyue/Desktop/actix_blog/cmake-build-debug

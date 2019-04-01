@@ -7,15 +7,6 @@ use db::DbConnecting;
 
 extern crate md5;
 
-struct RootCatId;
-
-impl RootCatId {
-    fn id() -> Uuid {
-        //!use online_tool to gen uuid
-        Uuid::parse_str("a3c4aff6-5213-11e9-8647-d663bd873d93").unwrap()
-    }
-}
-
 fn insert_root_user() -> () {
     let conn = DbConnecting::establish_connection();
 
