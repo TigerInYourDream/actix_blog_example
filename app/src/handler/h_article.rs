@@ -1,7 +1,7 @@
 //! implement handle for Actor System
 use super::*;
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct ArticlesIndex {}
 
 impl Handler<ArticlesIndex> for DbExecutor {
@@ -19,7 +19,7 @@ impl Handler<ArticlesIndex> for DbExecutor {
     }
 }
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct ShowArticle {
     pub id: String,
 }
@@ -53,7 +53,7 @@ impl Handler<ShowArticle> for DbExecutor {
     }
 }
 
-#[derive(GenMessage, Deserialize, Clone)]
+#[derive(ImplMessage, Deserialize, Clone)]
 pub struct NewArticleForm {
     pub user_id: String,
     pub category_id: String,
@@ -77,14 +77,15 @@ impl Handler<NewArticleForm> for DbExecutor {
             content: msg.content,
             release_status: msg.release_status,
         };
-        new_article
-            .restrict_insert(&conn)
-            .map_err(error::ErrorInternalServerError)?;
+        diesel::insert_into(articles::table)
+            .values(&new_article)
+            .get_result::<Article>(conn)
+            .expect("Error insert new article");
         Ok("".to_string())
     }
 }
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct EditArticle {
     pub id: String,
     pub user_id: String,
@@ -121,12 +122,11 @@ impl Handler<EditArticle> for DbExecutor {
         } else {
             Ok("wrong user".to_string())
         };
-
         ret
     }
 }
 
-#[derive(GenMessage, Deserialize, Clone)]
+#[derive(ImplMessage, Deserialize, Clone)]
 pub struct UpdateArticleForm {
     pub id: String,
     pub user_id: String,
@@ -166,14 +166,16 @@ impl Handler<UpdateArticleForm> for DbExecutor {
             create_time: None,
             update_time: NaiveDateTime::from_timestamp(Local::now().timestamp(), 6),
         };
-        update
-            .restrict_update(&conn)
-            .map_err(error::ErrorInternalServerError)?;
+
+        diesel::update(articles::table)
+            .set(&update)
+            .execute(conn)
+            .expect("Error update new article");
         Ok("".to_string())
     }
 }
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct DeleteArticle {
     pub id: String,
     pub user_id: String,
@@ -199,8 +201,9 @@ impl Handler<DeleteArticle> for DbExecutor {
             return Err(error::ErrorBadRequest("wrong user"));
         };
 
-        item.restrict_delete(&conn)
-            .map_err(error::ErrorInternalServerError)?;
+        diesel::delete(&item)
+            .get_result::<Article>(conn)
+            .expect("Error delete article");
         Ok("".to_string())
     }
 }

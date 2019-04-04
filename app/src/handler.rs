@@ -11,7 +11,7 @@ pub use self::h_users::*;
 use actix_web::actix::{Handler, Message};
 use actix_web::{error, Error, Result};
 use serde_derive::Deserialize;
-use proc_for_actix::GenMessage;
+use proc_for_actix::ImplMessage;
 
 use crate::routes::DbExecutor;
 

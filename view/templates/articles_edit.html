@@ -1,0 +1,28 @@
+{% extends "basic.html" %}
+
+{% block title %}Edit: {{ title }}
+<hr>{% endblock %}
+
+{% block content %}
+<form action="/articles/{{ id }}/put" method="post">
+    <div>
+        <p>Title: </p><input class="form-control" type="text" name="title" value="{{ title }}" />
+    </div>
+    <div>
+        <p>Content: </p>
+        <textarea class="form-control" type="text" name="content">{{ content }}</textarea>
+    </div>
+    <div>
+        <p>Category: </p><input class="form-control" type="text" name="category_id" value="{{ category_id }}" />
+    </div>
+    <div>
+        <p>Release Status: </p><input class="form-control" type="text" name="release_status" value="{{ release_status }}" />
+    </div>
+    <input type="hidden" name="id" value="" />
+    <input type="hidden" name="user_id" value="" />
+    <div class="py-3"><input class="btn btn-primary w-100" type="submit" value="Submit" /></div>
+</form>
+<form action="/articles/{{ id }}/delete" method="post">
+    <div><input class="btn btn-danger w-100" type="submit" value="Delete" /></div>
+</form>
+{% endblock %}

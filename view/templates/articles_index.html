@@ -1,0 +1,16 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col"><a href="/articles/new">New Article</a></div>
+</div>
+
+{% for article in articles %}
+<div class="row">
+    <div class="col">
+        <a href="/articles/{{ article.id }}">{{ article.title }}</a>
+        <a href="/articles/{{ article.id }}/edit"> Edit</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -65,5 +65,8 @@ pub fn app() -> App<AppState> {
         .resource("/users/logout", |r| {
             r.method(Method::POST).with(users::logout)
         })
-        .handler("/public", fs::StaticFiles::new("public").unwrap())
+        .handler("/resource",
+                 fs::StaticFiles::new("resource")
+                     .unwrap()
+                     .show_files_listing())
 }

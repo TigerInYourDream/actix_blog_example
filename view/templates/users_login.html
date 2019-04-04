@@ -1,0 +1,13 @@
+{% extends "basic.html" %}
+
+{% block content %}
+<form action="/users/login" method="post">
+    <div>
+        <p>Email: </p><input class="form-control" type="text" name="user_email" />
+    </div>
+    <div>
+        <p>PassWord: </p><input class="form-control" type="textarea" name="pass_word" />
+    </div>
+    <div class="py-3"><input class="btn btn-primary w-100" type="submit" value="LogIn" /></div>
+</form>
+{% endblock %}

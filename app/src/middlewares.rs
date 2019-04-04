@@ -7,40 +7,6 @@ use crate::api::*;
 use db::models::*;
 use time::Duration;
 
-// jwt
-pub struct JWT {
-    pub user_id: String,
-}
-
-#[derive(Debug, Serialize, Deserialize)]
-pub struct JWTClaims {
-    pub user_id: String,
-    pub refresh: usize,
-    pub exp: usize,
-}
-
-impl JWT {
-    pub fn secret() -> &'static str {
-        "666"
-    }
-
-    pub fn token(&self) -> Result<String, jwt::errors::Error> {
-        let claims = JWTClaims {
-            user_id: self.user_id.to_owned(),
-            refresh: NaiveDateTime::from_timestamp(Local::now().timestamp(), 6)
-                .checked_add_signed(Duration::hours(6))
-                .unwrap()
-                .timestamp() as usize,
-            exp: NaiveDateTime::from_timestamp(Local::now().timestamp(), 6)
-                .checked_add_signed(Duration::hours(60))
-                .unwrap()
-                .timestamp() as usize,
-        };
-        let token = jwt::encode(&jwt::Header::default(), &claims, JWT::secret().as_ref())?;
-        Ok(token)
-    }
-}
-
 pub struct JWTMiddleWare; // <- my middleware
 
 /// Middleware implementation, middlewares are generic over application state,

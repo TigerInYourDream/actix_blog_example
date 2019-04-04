@@ -1,6 +1,6 @@
 use super::*;
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct HomeIndex {
     pub page: Option<i64>,
 }

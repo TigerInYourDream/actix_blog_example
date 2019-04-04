@@ -5,3 +5,5 @@ authors = ["TigerInYourDreams <TigerInYourDream@hi.zy>"]
 edition = "2018"
 
 [dependencies]
+askama = "0.8"
+db = { path = "../db" }

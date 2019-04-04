@@ -6,7 +6,7 @@ use proc_macro::TokenStream;
 use quote::TokenStreamExt;
 use syn::DeriveInput;
 
-#[proc_macro_derive(GenMessage)]
+#[proc_macro_derive(ImplMessage)]
 pub fn derive(input: proc_macro::TokenStream) -> TokenStream {
     let ast: DeriveInput = parse_macro_input!(input as DeriveInput);
     let token0: proc_macro2::TokenStream = impl_message(&ast)

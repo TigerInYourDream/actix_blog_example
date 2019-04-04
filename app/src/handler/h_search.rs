@@ -1,6 +1,6 @@
 use super::*;
 
-#[derive(GenMessage)]
+#[derive(ImplMessage)]
 pub struct SearchIndex {
     pub page: Option<i64>,
     pub search_content: String,

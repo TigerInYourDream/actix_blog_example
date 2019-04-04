@@ -1,0 +1,23 @@
+{% extends "basic.html" %}
+
+{% block title %}New Article
+<hr>{% endblock %}
+
+{% block content %}
+<form action="/articles" method="post">
+    <div>
+        <p>Title: </p><input class="form-control" type="text" name="title" value=""/>
+    </div>
+    <div>
+        <p>Content: </p><textarea class="form-control" type="text" name="content"></textarea>
+    </div>
+    <div>
+        <p>Category: </p><input class="form-control" type="text" name="category_id" value=""/>
+    </div>
+    <div>
+        <p>Release Status: </p><input class="form-control" type="text" name="release_status" value="100"/>
+    </div>
+    <input type="hidden" name="user_id" value=""/>
+    <div class="py-3"><input class="btn btn-primary w-100" type="submit" value="Submit"/></div>
+</form>
+{% endblock %}

@@ -1,6 +1,6 @@
 use super::*;
 
-#[derive(GenMessage, Deserialize, Clone)]
+#[derive(ImplMessage, Deserialize, Clone)]
 pub struct LoginForm {
     pub user_email: String,
     pub pass_word: String,
@@ -15,8 +15,8 @@ impl Handler<LoginForm> for DbExecutor {
             .filter(users::user_email.eq(msg.user_email))
             .first::<User>(conn)
             .map_err(error::ErrorInternalServerError)?;
-
-        let pass_word = format!("{}{}", msg.pass_word, items.salt);
+        let pass_word = format!("{:x}",md5::compute(msg.pass_word.as_bytes()));
+        let pass_word = format!("{}{}", pass_word, items.salt);
         let pass_word = format!("{:x}", md5::compute(pass_word.as_bytes()));
         println!("{}", pass_word);
         println!("{}", items.pass_word);
